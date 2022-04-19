@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal, Pressable, Switch, Text, TextInput, View } from "react-native";
 import { Vice } from "../interfaces";
 import { styles } from "../styles";
+import { numToCurrency } from "../utils/number-format-utils";
 import { ViceCardDateButtons } from "./vice-card-date-buttons";
 
 export const ViceCardModal = (props: {
@@ -18,21 +19,6 @@ export const ViceCardModal = (props: {
         <View style={styles.viceModal}>
           <View style={styles.viceModalContent}>
             <View style={styles.cardTitle}>
-              <Pressable onPress={() => setEditMode(!editMode)}>
-                <Text
-                  style={{
-                    ...styles.viceModalButton,
-                    ...styles.viceModalButtonOutline,
-                  }}
-                >
-                  {!editMode ? "Edit" : "Save"}
-                </Text>
-              </Pressable>
-              <Pressable onPress={props.onDismiss}>
-                <Text style={styles.viceModalButton}>X</Text>
-              </Pressable>
-            </View>
-            <View style={styles.cardTitle}>
               {!editMode ? (
                 <Text style={styles.cardSaveTitle}>{props.vice.name}</Text>
               ) : (
@@ -43,7 +29,9 @@ export const ViceCardModal = (props: {
                   placeholderTextColor={"#AEACAC"}
                 />
               )}
-              <Text style={styles.cardSaveAmt}>${props.vice.balance}</Text>
+              <Text style={styles.cardSaveAmt}>
+                {numToCurrency(props.vice.balance ?? 0)}
+              </Text>
             </View>
             {editMode ? (
               <>
@@ -61,7 +49,26 @@ export const ViceCardModal = (props: {
             <Text style={styles.cardText}>
               Once a day – No snacking after dinner
             </Text>
-            <ViceCardDateButtons disabled={!editMode} />
+            <ViceCardDateButtons
+              vice={props.vice}
+              onPress={(date: Date) => console.log(date)}
+              disabled={!editMode}
+            />
+          </View>
+          <View style={styles.row}>
+            <Pressable onPress={() => setEditMode(!editMode)}>
+              <Text
+                style={{
+                  ...styles.viceModalButton,
+                  ...styles.viceModalButtonOutline,
+                }}
+              >
+                {!editMode ? "Edit" : "Save"}
+              </Text>
+            </Pressable>
+            <Pressable onPress={props.onDismiss}>
+              <Text style={styles.viceModalButton}>Cancel</Text>
+            </Pressable>
           </View>
         </View>
       </View>

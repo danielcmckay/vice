@@ -1,4 +1,8 @@
 import { StyleSheet } from "react-native";
+import { Dimensions } from "react-native";
+
+const DEVICE_WIDTH = Dimensions.get("window").width;
+const DEVICE_HEIGHT = Dimensions.get("window").height;
 
 export const styles = StyleSheet.create({
   container: {
@@ -9,37 +13,49 @@ export const styles = StyleSheet.create({
     alignItems: "stretch",
     justifyContent: "space-evenly",
     color: "white",
-    padding: 25,
+    padding: 15,
     paddingTop: 100,
   },
   appText: {
-    color: "white"
+    color: "white",
+    fontFamily: "Kadwa_400Regular",
   },
   title: {
     color: "white",
     fontSize: 34,
     fontWeight: "bold",
     elevation: 3,
+    fontFamily: "Kadwa_700Bold",
   },
   navbar: {
     flex: 0.3,
     display: "flex",
     flexDirection: "row",
+    alignItems: "center",
     justifyContent: "space-between",
     marginBottom: 50,
     position: "absolute",
     top: 60,
     left: 25,
-    width: 340,
+    width: DEVICE_WIDTH * 0.85,
   },
   avatar: {
     backgroundColor: "white",
     height: 50,
     width: 50,
     borderRadius: 25,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  subTitle: {
+    fontSize: 24,
+    color: "white",
+    marginTop: 20,
+    fontFamily: "Kadwa_700Bold",
   },
   cardContainer: {
-    marginTop: 40,
+    marginTop: 20,
   },
   card: {
     backgroundColor: "#735295",
@@ -53,25 +69,30 @@ export const styles = StyleSheet.create({
   },
   cardText: {
     color: "white",
+    fontFamily: "Kadwa_400Regular",
   },
   cardTitle: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
+    fontFamily: "Kadwa_400Regular",
   },
   cardSaveAmt: {
     fontWeight: "bold",
     color: "#14F4E7",
     fontSize: 20,
+    fontFamily: "Kadwa_700Bold",
   },
   cardSaveTitle: {
     fontWeight: "bold",
     fontSize: 20,
     color: "white",
+    fontFamily: "Kadwa_700Bold",
   },
   row: {
     display: "flex",
     flexDirection: "row",
+    alignItems: "center",
     justifyContent: "space-between",
   },
   dateIndicator: {
@@ -83,6 +104,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 10,
+    fontFamily: "Kadwa_400Regular",
   },
   viceModal: {
     padding: 20,
@@ -94,7 +116,7 @@ export const styles = StyleSheet.create({
     elevation: 5,
     display: "flex",
     flexDirection: "column",
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
   },
   viceModalContent: {
     display: "flex",
@@ -108,12 +130,13 @@ export const styles = StyleSheet.create({
   },
   viceModalButton: {
     color: "white",
+    fontFamily: "Kadwa_400Regular",
   },
   viceModalButtonOutline: {
     paddingVertical: 5,
     paddingHorizontal: 10,
     borderColor: "white",
-    borderWidth: 1.5
+    borderWidth: 1.5,
   },
   floatingActionButton: {
     position: "absolute",
@@ -129,6 +152,7 @@ export const styles = StyleSheet.create({
     elevation: 4,
     borderColor: "#14F4E7",
     borderWidth: 2,
+    fontFamily: "Kadwa_400Regular",
   },
   inlineInput: {
     color: "white",
@@ -136,5 +160,6 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
     flex: 0.8,
     paddingBottom: 2,
+    fontFamily: "Kadwa_400Regular",
   },
 });

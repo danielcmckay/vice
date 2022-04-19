@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { View, Text, Pressable, Modal } from "react-native";
 import { Vice } from "../interfaces";
 import { styles } from "../styles";
+import { numToCurrency } from "../utils/number-format-utils";
+import { capitalize } from "../utils/string-utils";
 import { ViceCardDateButtons } from "./vice-card-date-buttons";
 import { ViceCardModal } from "./vice-card-modal";
 
@@ -20,15 +22,20 @@ export const ViceCard = (props: { vice: Vice }) => {
           <Pressable onPress={() => setShowModal(true)}>
             <Text style={styles.cardSaveTitle}>{props.vice.name}</Text>
           </Pressable>
-          <Text style={styles.cardSaveAmt}>${props.vice.balance}</Text>
+          <Text style={styles.cardSaveAmt}>
+            {numToCurrency(props.vice.balance ?? 0)}
+          </Text>
         </View>
         <Text style={styles.cardText}>
-          ${props.vice.price} committed per day
+          {numToCurrency(props.vice.price ?? 0)} committed per day
         </Text>
         <Text style={styles.cardText}>
-          Once a day – No snacking after dinner
+          {capitalize(props.vice.frequency ?? "")} – {props.vice.description}
         </Text>
-        <ViceCardDateButtons />
+        <ViceCardDateButtons
+          onPress={(date: Date) => console.log(date)}
+          vice={props.vice}
+        />
       </View>
     </>
   );
